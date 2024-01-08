@@ -15,6 +15,7 @@ char* get_string(){
         else
             string = temp;
         count++;
+        
     }
     string[count] = '\0';
     return string;
