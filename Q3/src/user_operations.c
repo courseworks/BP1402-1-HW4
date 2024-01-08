@@ -49,7 +49,43 @@ void new_user(char ***stored_data, int *size, const char *user_name, const char 
 void delete_user(char ***stored_data, int *size, const char *user_name) {
     // Free memory for the deleted user data
 
-
+    
+    int count = 0;
+    char** username = show_username(*stored_data, *size);
+    for(int i = 0; i < *size; i++)
+       // printf("%s ",username[i]);
+    
+    for(int i = 0; i < *size; i++){
+        if(strcmp(username[i],_username) == 0){
+            if(i == (*size) - 1){
+            char** temp = (char**)realloc(*stored_data,((*size) - 1) * sizeof(char*));
+            if(!temp)
+                return;
+            else
+                *stored_data = temp;
+            }
+        else{
+            for(int j = i; j < *size; j++){
+                char* temp = (*stored_data)[j];
+                (*stored_data)[j] = (*stored_data)[j+1];
+                (*stored_data)[j+1] = temp;
+            }
+            char** temp = (char**)realloc(*stored_data,((*size) - 1) * sizeof(char*));
+            if(!temp)
+                return;
+            else
+                *stored_data = temp;
+        }
+            count++;
+        }
+}
+    if(count == 0)
+        printf("error\n");
+    else{
+        printf("user_deleted\n");
+    (*size)--;
+    }
+}
     // Shift the remaining users to fill the gap
 
 
